@@ -1,3 +1,5 @@
+import './index.css';
+
 const TodoList = [
   {
     id: 1,
@@ -22,12 +24,15 @@ const TodoList = [
 ];
 
 const RenderTodos = () => {
-  const list = document.getElementById('todo-list');
+  const list = document.querySelector('.todo-container');
   TodoList.forEach((todo) => {
-    const item = document.createElement('li');
+    const item = document.createElement('div');
     item.innerHTML = `
-            <input type="checkbox" ${todo.completed ? 'checked' : ''}>
-            <span>${todo.desctiption}</span>
+      <div class="todo border-bottom flex">
+        <input class="box" type="checkbox" />
+        <input type="text" value="${todo.desctiption}" />
+        <i class='bx bx-dots-vertical-rounded'></i>
+      </div>
         `;
     list.appendChild(item);
   });
