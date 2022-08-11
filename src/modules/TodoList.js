@@ -16,9 +16,17 @@ class Todos {
     localStorage.setItem('todos', JSON.stringify(this.todos));
   }
 
+  changeCompleted(index) {
+    this.todos[index - 1].completed = !this.todos[index - 1].completed;
+    for (let i = 0; i < this.todos.length; i += 1) {
+      this.todos[i].id = i + 1;
+    }
+    localStorage.setItem('todos', JSON.stringify(this.todos));
+  }
+
   deleteTodo(index) {
     if (this.todos.length === 1) {
-      this.clearAllTodos();
+      this.todos = [];
     } else {
       this.todos.splice(index, 1);
     }
@@ -29,7 +37,11 @@ class Todos {
   }
 
   clearAllTodos() {
-    this.todos = [];
+    const filteredTodos = this.todos.filter((todo) => !todo.completed);
+    this.todos = filteredTodos;
+    for (let i = 0; i < this.todos.length; i += 1) {
+      this.todos[i].id = i + 1;
+    }
     localStorage.setItem('todos', JSON.stringify(this.todos));
   }
 

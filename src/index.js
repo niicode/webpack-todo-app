@@ -16,16 +16,39 @@ const renderTodos = () => {
     todoList.getAllTodos().forEach((todo, index) => {
       const todoItem = document.createElement('div');
       todoItem.classList.add('todo-item');
+      const checkTodoStatus = () => {
+        let status = '';
+        if (todo.completed) {
+          status = 'checked';
+        } else {
+          status = '';
+        }
+        return status;
+      };
       todoItem.innerHTML = `
       <div data-check = ${index} class="todo border-bottom flex">
-        <input class="box" type="checkbox" />
-        <input data-item = ${todo.id} class="todo-item" type="text" value="${todo.description}" />
+        <input data-complete = ${todo.id} class="box" ${checkTodoStatus()} type="checkbox" />
+        <input data-item = ${todo.id} class="item ${checkTodoStatus()}" type="text" value="${todo.description}" />
         <i id="delete-btn" data-remote = ${index} class='bx bx-trash' id="delete-btn"></i>
       </div>
     `;
       todoElement.appendChild(todoItem);
     });
   }
+
+  const todoItems = document.querySelectorAll('.item');
+  const checkboxes = document.querySelectorAll('.box');
+  checkboxes.forEach((checkbox) => {
+    checkbox.addEventListener('click', (e) => {
+      if (checkbox.checked) {
+        todoList.changeCompleted(e.target.dataset.complete);
+        todoItems[e.target.dataset.complete - 1].classList.add('checked');
+      } else {
+        todoList.changeCompleted(e.target.dataset.complete);
+        todoItems[e.target.dataset.complete - 1].classList.remove('checked');
+      }
+    });
+  });
 
   const deletBtn = document.querySelectorAll('#delete-btn');
   deletBtn.forEach((btn) => {
@@ -36,7 +59,8 @@ const renderTodos = () => {
     });
   });
 
-  const editTodo = document.querySelectorAll('.todo-item');
+  const editTodo = document.querySelectorAll('.item');
+  const checkedBox = document.querySelectorAll('.box');
   editTodo.forEach((todo) => {
     todo.addEventListener('keyup', (e) => {
       const id = e.target.dataset.item;
@@ -44,6 +68,8 @@ const renderTodos = () => {
       const completed = false;
       const newTodo = new Todo(description, completed, id);
       todoList.updateTodo(id, newTodo);
+      checkedBox[id - 1].checked = false;
+      todo.classList.remove('checked');
     });
   });
 

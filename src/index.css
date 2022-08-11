@@ -29,6 +29,10 @@ h1 {
   border-bottom: 1px solid rgba(105, 100, 100, 0.575);
 }
 
+.checked {
+  text-decoration: line-through;
+}
+
 i {
   font-size: 1.2rem;
   color: rgb(116, 110, 110);
