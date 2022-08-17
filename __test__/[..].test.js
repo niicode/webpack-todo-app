@@ -28,3 +28,20 @@ const renderTodos = () => {
 beforeAll(() => {
   renderTodos();
 });
+
+describe('Manipulate todos', () => {
+  test('remove todo', () => {
+    todoArr.deleteTodo(1);
+    renderTodos();
+    expect(todoArr.getAllTodos().length).toBe(2);
+  });
+  test('remove div deleted from the dom', () => {
+    const list = document.querySelector('#todo-list').childNodes;
+    expect(list.length).toBe(2);
+  });
+  test('add todo item', () => {
+    todoArr.addTodo(new Todo(index, `Task ${index}`, false));
+    renderTodos();
+    expect(todoArr.getAllTodos().length).toBe(3);
+  });
+});
