@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack --mode development",
     "start": "webpack serve --open",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   "homepage": "https://github.com/niicode/webpack-todo-app/",
   "devDependencies": {
     "@babel/core": "^7.18.10",
+    "@babel/plugin-proposal-decorators": "^7.18.10",
     "@babel/preset-env": "^7.18.10",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.5",
@@ -30,6 +32,8 @@
     "eslint-plugin-import": "^2.26.0",
     "hint": "^7.1.1",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^28.1.3",
+    "jest-environment-jsdom": "^28.1.3",
     "style-loader": "^3.3.1",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^21.0.0",
