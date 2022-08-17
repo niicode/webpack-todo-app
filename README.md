@@ -33,6 +33,9 @@ To get a local copy up and running follow these simple example steps.
 - `npm run build`
 - `npm start`
 
+### Test
+- `npm run test`
+
 ## Author
 
 👤 **Nii Darku**
