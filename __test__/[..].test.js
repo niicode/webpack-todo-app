@@ -7,12 +7,9 @@ import TodoArr from '../__mocks__/TodoArr.js';
 
 const todoArr = new TodoArr();
 
-let index = 0;
-const todo = new Todo(index, `Task ${index}`, false);
-
 for (let i = 0; i < 3; i += 1) {
+  const todo = new Todo(`Task ${i}`, false, i + 1);
   todoArr.addTodo(todo);
-  index += 1;
 }
 
 const renderTodos = () => {
@@ -40,7 +37,7 @@ describe('Manipulate todos', () => {
     expect(list.length).toBe(2);
   });
   test('add todo item', () => {
-    todoArr.addTodo(new Todo(index, `Task ${index}`, false));
+    todoArr.addTodo(new Todo('Task list', false, todoArr.getAllTodos().length + 1));
     renderTodos();
     expect(todoArr.getAllTodos().length).toBe(3);
   });
