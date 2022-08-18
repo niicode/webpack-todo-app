@@ -1,6 +1,6 @@
 import LocalStorage from './localStorage.js';
 
-const localStorage = new LocalStorage();
+export const localStorage = new LocalStorage();
 class TodoArr {
   constructor() {
     this.todos = localStorage.store || [];
