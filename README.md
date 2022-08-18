@@ -14,7 +14,7 @@
 
 ## Live Demo
 
-[Soon...](soon...)
+[Live](https://niicode.github.io/webpack-todo-app/)
 
 
 ## Getting Started
