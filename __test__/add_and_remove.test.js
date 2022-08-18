@@ -37,7 +37,9 @@ describe('Manipulate todos', () => {
     expect(list.length).toBe(2);
   });
   test('add todo item', () => {
-    todoArr.addTodo(new Todo('Task list', false, todoArr.getAllTodos().length + 1));
+    todoArr.addTodo(
+      new Todo('Task list', false, todoArr.getAllTodos().length + 1)
+    );
     renderTodos();
     expect(todoArr.getAllTodos().length).toBe(3);
   });
